@@ -28,7 +28,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="95" translatesAutoresizingMaskIntoConstraints="NO" id="UyP-WY-gej" userLabel="PB row stack">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ПриватБанк" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umT-hw-dJ5">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="ПриватБанк" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umT-hw-dJ5">
                                                         <rect key="frame" x="0.0" y="0.0" width="117" height="32"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                         <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -46,7 +46,7 @@
                                                                     <action selector="showDatePicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GWH-Tg-Rgn"/>
                                                                 </connections>
                                                             </button>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfc-yV-xef">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfc-yV-xef">
                                                                 <rect key="frame" x="40.5" y="0.0" width="90.5" height="32"/>
                                                                 <attributedString key="attributedText">
                                                                     <fragment content="01.01.2015">
@@ -148,7 +148,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="172" translatesAutoresizingMaskIntoConstraints="NO" id="21j-vX-fht" userLabel="NBU row stack">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="НБУ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzi-xJ-WMx">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="НБУ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzi-xJ-WMx">
                                                         <rect key="frame" x="0.0" y="0.0" width="40.5" height="32"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                         <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -166,7 +166,7 @@
                                                                     <action selector="showDatePicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xEQ-gS-eYF"/>
                                                                 </connections>
                                                             </button>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3C-Zi-y7A">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3C-Zi-y7A">
                                                                 <rect key="frame" x="40" y="0.0" width="90.5" height="32"/>
                                                                 <attributedString key="attributedText">
                                                                     <fragment content="01.01.2015">
