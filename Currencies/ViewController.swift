@@ -14,7 +14,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     
     let PB_URL = "https://api.privatbank.ua/p24api/exchange_rates?json"
     let NB_URL = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json"
-
+    
     @IBOutlet weak var PBTableView: UITableView!
     @IBOutlet weak var NBUTableView: UITableView!
     @IBOutlet weak var PBDateLabel: UILabel!
@@ -22,12 +22,13 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     
     var attriburedText = NSAttributedString()
     var datePickerDate = Date()
-    var exchangeRatesArray: [RateData]?
+    var PBexchangeRatesArray: [RateData]?
+    var NBexchangeRatesArray: [NBRateData]?
     
     @IBAction func showDatePicker(_ sender: UIButton) {
         
         sender.setImage(UIImage(imageLiteralResourceName: "icons8-calendar-96 (1)"), for: UIControl.State.normal)
-
+        
         // get a reference to the view controller for the popover
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popoverId") as! DatePickerViewController
         
@@ -45,12 +46,20 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
             popController.datePicker.date = self.datePickerDate
             popController.datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
         }
-//        self.present(popController, animated: true, completion: nil)
+        //        self.present(popController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpDateLabel()
+        
+        userSelectedDateFor(PB_URL, with: attriburedText.string)
+        
+        let stringDate = attriburedText.string
+        let formattedString = stringDate.replacingOccurrences(of: ".", with: "")
+        let formattdStringForRequest = formattedString[4..<formattedString.count] + formattedString[2..<4] + formattedString[0..<2]
+        userSelectedDateFor(NB_URL, with: formattdStringForRequest)
+        
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -60,14 +69,22 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     override var prefersStatusBarHidden: Bool {
         return false
     }
-
+    
     //MARK: - NBU tableview source delegate methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == NBUTableView {
-            return 5
+            
+            if let NBRatesArray = NBexchangeRatesArray {
+                return NBRatesArray.count
+            } else { return 5 }
+            
         } else if tableView == PBTableView {
-            return 4
+            
+            if let PBRatesArray = PBexchangeRatesArray {
+                return PBRatesArray.count
+            } else { return 5 }
+            
         } else {
             return 1
         }
@@ -77,14 +94,27 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == NBUTableView {
-            let cell = NBUTableView.dequeueReusableCell(withIdentifier: "NBUCell")
-            return cell!
+            
+            let cell = NBUTableView.dequeueReusableCell(withIdentifier: "NBUCell") as! NBUTableViewCell
+            if let NBRates = NBexchangeRatesArray {
+                cell.currencyName.text = NBRates[indexPath.row].currencyName
+                cell.priceLabel.text = String(format: "%.2f", NBRates[indexPath.row].saleRate)  + " UAH"
+                cell.unitsLabel.text = "1 " + NBRates[indexPath.row].currency
+                return cell
+            } else { return UITableViewCell() }
+            
         } else if tableView == PBTableView {
-            let cell = PBTableView.dequeueReusableCell(withIdentifier: "PBCell")
-            return cell!
-        } else {
-            return UITableViewCell()
-        }
+
+            let cell = PBTableView.dequeueReusableCell(withIdentifier: "PBCell") as! PBTableViewCell
+            if let PBRates = PBexchangeRatesArray {
+                cell.currencyLabel.text = PBRates[indexPath.row].currency
+                cell.purchaseRateLabel.text = String(format: "%.3f", PBRates[indexPath.row].purchaseRatePB)
+                cell.saleRateLabel.text = String(format: "%.3f", PBRates[indexPath.row].saleRatePB)
+                return cell
+            } else { return UITableViewCell() }
+            
+        } else { return UITableViewCell() }
+        
     }
     
     //MARK: - UIPopoverPresentationControllerDelegate methods
@@ -128,6 +158,7 @@ private extension ViewController {
         let dateValue = dateformatter.string(from: Date())
         let attributedString = NSAttributedString(string: dateValue,
                                                   attributes: [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue])
+        attriburedText = attributedString
         PBDateLabel.attributedText = attributedString
         NBUDateLabel.attributedText = attributedString
     }
@@ -141,7 +172,7 @@ private extension ViewController {
 
 //MARK: Networking
 
- private extension ViewController {
+private extension ViewController {
     
     func getExchangeRates(url: String, parameters: [String: String]) {
         print(url)
@@ -150,7 +181,7 @@ private extension ViewController {
             if response.result.isSuccess {
                 print("Success! Got the rate data")
                 let exchangeRate = JSON(response.result.value!)
-
+                
                 if url == self.PB_URL { self.PBRateDataUpdateCurrency(json: exchangeRate) }
                 if url == self.NB_URL { self.NBRateDataUpdateCurrency(json: exchangeRate) }
                 
@@ -181,6 +212,8 @@ private extension ViewController {
                 print(tempRateData)
             }
         }
+        PBexchangeRatesArray = ratesArray
+        PBTableView.reloadData()
     }
     
     func NBRateDataUpdateCurrency(json: JSON) {
@@ -188,14 +221,15 @@ private extension ViewController {
         let tempResult = json.arrayValue
         var ratesArray = [NBRateData]()
         for item in tempResult {
-                
-                let tempRateData = NBRateData(currency: item["cc"].stringValue,
-                                              currencyName: item["txt"].stringValue,
-                                              saleRate: item["rate"].doubleValue)
-                ratesArray.append(tempRateData)
-                print(tempRateData)
-
+            
+            let tempRateData = NBRateData(currency: item["cc"].stringValue,
+                                          currencyName: item["txt"].stringValue,
+                                          saleRate: item["rate"].doubleValue)
+            ratesArray.append(tempRateData)
+            print(tempRateData)
         }
+        NBexchangeRatesArray = ratesArray
+        NBUTableView.reloadData()
     }
     
 }

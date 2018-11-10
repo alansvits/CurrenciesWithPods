@@ -10,6 +10,10 @@ import UIKit
 
 class PBTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var currencyLabel: UILabel!
+    @IBOutlet weak var purchaseRateLabel: UILabel!
+    @IBOutlet weak var saleRateLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

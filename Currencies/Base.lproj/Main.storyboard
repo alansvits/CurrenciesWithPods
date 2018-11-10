@@ -130,6 +130,11 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                 </tableViewCellContentView>
+                                                                <connections>
+                                                                    <outlet property="currencyLabel" destination="P0u-LD-bSk" id="wvt-kY-Or9"/>
+                                                                    <outlet property="purchaseRateLabel" destination="8yy-qK-JAO" id="GVa-rP-ExN"/>
+                                                                    <outlet property="saleRateLabel" destination="8us-5q-v3J" id="NCx-kq-uiR"/>
+                                                                </connections>
                                                             </tableViewCell>
                                                         </prototypes>
                                                         <sections/>
