@@ -13,6 +13,7 @@ import SwiftyJSON
 class ViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     let PB_URL = "https://api.privatbank.ua/p24api/exchange_rates?json"
+    let NB_URL = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json"
 
     @IBOutlet weak var PBTableView: UITableView!
     @IBOutlet weak var NBUTableView: UITableView!
@@ -92,12 +93,15 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         let button = popoverPresentationController.sourceView as! UIButton
         button.setImage(UIImage(imageLiteralResourceName: "icons8-calendar-96"), for: .normal)
         
-        userSelectedDate(attriburedText.string)
-        
         if popoverPresentationController.sourceView == view.viewWithTag(1) {
             PBDateLabel.attributedText = self.attriburedText
+            userSelectedDateFor(PB_URL, with: attriburedText.string)
         }
         if popoverPresentationController.sourceView == view.viewWithTag(2) {
+            let stringDate = attriburedText.string
+            let formattedString = stringDate.replacingOccurrences(of: ".", with: "")
+            let formattdStringForRequest = formattedString[4..<formattedString.count] + formattedString[2..<4] + formattedString[0..<2]
+            userSelectedDateFor(NB_URL, with: formattdStringForRequest)
             NBUDateLabel.attributedText = self.attriburedText
         }
     }
@@ -128,9 +132,9 @@ private extension ViewController {
         NBUDateLabel.attributedText = attributedString
     }
     
-    func userSelectedDate(_ date: String) {
+    func userSelectedDateFor(_ url: String, with date: String) {
         let params: [String: String] = ["date": date]
-        getExchangeRates(url: PB_URL, parameters: params)
+        getExchangeRates(url: url, parameters: params)
     }
     
 }
@@ -146,9 +150,10 @@ private extension ViewController {
             if response.result.isSuccess {
                 print("Success! Got the rate data")
                 let exchangeRate = JSON(response.result.value!)
-//                print(exchangeRate)
-                //TODO: UPDATE UI
-                self.updateCurrencyData(json: exchangeRate)
+
+                if url == self.PB_URL { self.PBRateDataUpdateCurrency(json: exchangeRate) }
+                if url == self.NB_URL { self.NBRateDataUpdateCurrency(json: exchangeRate) }
+                
             } else {
                 print("Error \(String(describing: response.result.error))")
             }
@@ -163,21 +168,33 @@ private extension ViewController {
 
 private extension ViewController {
     
-    func updateCurrencyData(json: JSON) {
+    func PBRateDataUpdateCurrency(json: JSON) {
         
         let tempResult = json["exchangeRate"].arrayValue
-        print("exchange rate is: \(tempResult)")
-        
         var ratesArray = [RateData]()
         for item in tempResult {
             if item["saleRate"].double != nil {
-                
                 let tempRateData = RateData(currency: item["currency"].stringValue,
                                             saleRatePB: item["saleRate"].doubleValue,
                                             purchaseRatePB: item["purchaseRate"].doubleValue)
                 ratesArray.append(tempRateData)
                 print(tempRateData)
             }
+        }
+    }
+    
+    func NBRateDataUpdateCurrency(json: JSON) {
+        
+        let tempResult = json.arrayValue
+        var ratesArray = [NBRateData]()
+        for item in tempResult {
+                
+                let tempRateData = NBRateData(currency: item["cc"].stringValue,
+                                              currencyName: item["txt"].stringValue,
+                                              saleRate: item["rate"].doubleValue)
+                ratesArray.append(tempRateData)
+                print(tempRateData)
+
         }
     }
     

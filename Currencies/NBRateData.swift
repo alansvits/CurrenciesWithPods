@@ -16,7 +16,7 @@ struct NBRateData {
     let currencyName: String
     let saleRate: Double
     
-    init(currency: String, currencyName: Double, saleRate: Double) {
+    init(currency: String, currencyName: String, saleRate: Double) {
         self.currency = currency
         self.currencyName = currencyName
         self.saleRate = saleRate
