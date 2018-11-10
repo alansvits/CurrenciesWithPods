@@ -1,5 +1,5 @@
 //
-//  RateData.swift
+//  NBRateData.swift
 //  Currencies
 //
 //  Created by Stas Shetko on 2/11/18.
@@ -8,18 +8,18 @@
 
 import Foundation
 
-struct RateData {
+struct NBRateData {
     
     let baseCurrency = "UAH"
     
     let currency: String
-    let saleRatePB: Double
-    let purchaseRatePB: Double
+    let currencyName: String
+    let saleRate: Double
     
-    init(currency: String, saleRatePB: Double, purchaseRatePB: Double) {
+    init(currency: String, currencyName: Double, saleRate: Double) {
         self.currency = currency
-        self.saleRatePB = saleRatePB
-        self.purchaseRatePB = purchaseRatePB
+        self.currencyName = currencyName
+        self.saleRate = saleRate
     }
     
 }

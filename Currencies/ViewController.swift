@@ -173,10 +173,8 @@ private extension ViewController {
             if item["saleRate"].double != nil {
                 
                 let tempRateData = RateData(currency: item["currency"].stringValue,
-                                            saleRateNBU: item["saleRateNB"].doubleValue,
-                                            purchaseRateNBU: item["purchaseRateNB"].doubleValue,
-                                            saleRatePB: item["saleRate"].double,
-                                            purchaseRatePB: item["purchaseRate"].double)
+                                            saleRatePB: item["saleRate"].doubleValue,
+                                            purchaseRatePB: item["purchaseRate"].doubleValue)
                 ratesArray.append(tempRateData)
                 print(tempRateData)
             }
