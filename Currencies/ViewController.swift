@@ -43,7 +43,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setUpDateLabel()
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -107,5 +107,16 @@ private extension ViewController {
                                                   attributes: [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue])
         self.attriburedText = attributedString
         
+    }
+    
+    func setUpDateLabel() {
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "dd.MM.yyyy"
+        
+        let dateValue = dateformatter.string(from: Date())
+        let attributedString = NSAttributedString(string: dateValue,
+                                                  attributes: [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue])
+        PBDateLabel.attributedText = attributedString
+        NBUDateLabel.attributedText = attributedString
     }
 }
