@@ -21,6 +21,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     
     var attriburedText = NSAttributedString()
     var datePickerDate = Date()
+    var exchangeRatesArray: [RateData]?
     
     @IBAction func showDatePicker(_ sender: UIButton) {
         
@@ -144,9 +145,10 @@ private extension ViewController {
             
             if response.result.isSuccess {
                 print("Success! Got the rate data")
-                let exchangeRate: JSON = JSON(response.result.value!)
-                print(exchangeRate)
+                let exchangeRate = JSON(response.result.value!)
+//                print(exchangeRate)
                 //TODO: UPDATE UI
+                self.updateCurrencyData(json: exchangeRate)
             } else {
                 print("Error \(String(describing: response.result.error))")
             }
@@ -157,4 +159,28 @@ private extension ViewController {
     
 }
 
+//MARK: JSON parsing
 
+private extension ViewController {
+    
+    func updateCurrencyData(json: JSON) {
+        
+        let tempResult = json["exchangeRate"].arrayValue
+        print("exchange rate is: \(tempResult)")
+        
+        var ratesArray = [RateData]()
+        for item in tempResult {
+            if item["saleRate"].double != nil {
+                
+                let tempRateData = RateData(currency: item["currency"].stringValue,
+                                            saleRateNBU: item["saleRateNB"].doubleValue,
+                                            purchaseRateNBU: item["purchaseRateNB"].doubleValue,
+                                            saleRatePB: item["saleRate"].double,
+                                            purchaseRatePB: item["purchaseRate"].double)
+                ratesArray.append(tempRateData)
+                print(tempRateData)
+            }
+        }
+    }
+    
+}
