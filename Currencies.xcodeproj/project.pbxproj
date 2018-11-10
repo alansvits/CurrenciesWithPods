@@ -84,7 +84,6 @@
 			children = (
 				64ED4B282194AA7C00686841 /* AppDelegate.swift */,
 				64ED4B2A2194AA7C00686841 /* ViewController.swift */,
-				64031E2C21971C5C008BCF1C /* String+Extensions.swift */,
 				64031E2821970077008BCF1C /* RateData.swift */,
 				64031E2A21971524008BCF1C /* NBRateData.swift */,
 				64ED4B2C2194AA7C00686841 /* Main.storyboard */,
@@ -94,6 +93,7 @@
 				64031E222196CC09008BCF1C /* DatePickerViewController.swift */,
 				64031E1E2196A911008BCF1C /* PBTableViewCell.swift */,
 				64031E202196A923008BCF1C /* NBUTableViewCell.swift */,
+				64031E2C21971C5C008BCF1C /* String+Extensions.swift */,
 			);
 			path = Currencies;
 			sourceTree = "<group>";
