@@ -8,8 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class ViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+    
 
+    @IBOutlet weak var PBTableView: UITableView!
+    @IBOutlet weak var NBUTableView: UITableView!
+    
+    
     @IBAction func showDatePicker(_ sender: Any) {
 
         performSegue(withIdentifier: "popOver", sender: self)
@@ -39,5 +44,31 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
         return false
     }
 
+    //MARK: - NBU tableview delegate methods
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == NBUTableView {
+            return 5
+        } else if tableView == PBTableView {
+            return 4
+        } else {
+            return 1
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if tableView == NBUTableView {
+            let cell = NBUTableView.dequeueReusableCell(withIdentifier: "NBUCell")
+            return cell!
+        } else if tableView == PBTableView {
+            let cell = PBTableView.dequeueReusableCell(withIdentifier: "PBCell")
+            return cell!
+        } else {
+            return UITableViewCell()
+        }
+    }
+    
 }
 

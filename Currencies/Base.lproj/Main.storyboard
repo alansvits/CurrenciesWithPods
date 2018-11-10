@@ -97,7 +97,7 @@
                                                             <constraint firstAttribute="height" constant="150" id="OaS-iT-kOv"/>
                                                         </constraints>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="pDu-Yk-lxI">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PBCell" rowHeight="50" id="pDu-Yk-lxI" customClass="PBTableViewCell" customModule="Currencies" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="343" height="50"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pDu-Yk-lxI" id="ra0-hX-TiN">
@@ -131,24 +131,12 @@
                                                                     </subviews>
                                                                 </tableViewCellContentView>
                                                             </tableViewCell>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="B0U-er-NG9">
-                                                                <rect key="frame" x="0.0" y="78" width="343" height="44"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B0U-er-NG9" id="pG6-sS-aSh">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                </tableViewCellContentView>
-                                                            </tableViewCell>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="3KQ-aD-lut">
-                                                                <rect key="frame" x="0.0" y="122" width="343" height="44"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3KQ-aD-lut" id="meR-Tp-aV4">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                </tableViewCellContentView>
-                                                            </tableViewCell>
                                                         </prototypes>
                                                         <sections/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="bDl-Qg-mjQ"/>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="PE2-oT-UUB"/>
+                                                        </connections>
                                                     </tableView>
                                                 </subviews>
                                             </stackView>
@@ -203,7 +191,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="267"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="6SG-Gu-r8K">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBUCell" id="6SG-Gu-r8K" customClass="NBUTableViewCell" customModule="Currencies" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6SG-Gu-r8K" id="j2D-xR-HrV">
@@ -241,16 +229,17 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                 </tableViewCellContentView>
-                                                            </tableViewCell>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="86h-mY-Axw">
-                                                                <rect key="frame" x="0.0" y="72" width="343" height="44"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="86h-mY-Axw" id="zcy-Oi-TM6">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                </tableViewCellContentView>
+                                                                <connections>
+                                                                    <outlet property="currencyName" destination="xsV-Ql-x6D" id="nzu-VB-Tfn"/>
+                                                                    <outlet property="priceLabel" destination="wH5-hU-IMq" id="zpX-ZT-Y9d"/>
+                                                                    <outlet property="unitsLabel" destination="9WV-sA-akt" id="9L8-zN-iii"/>
+                                                                </connections>
                                                             </tableViewCell>
                                                         </prototypes>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="QWw-W0-fR7"/>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="F95-eu-Jxh"/>
+                                                        </connections>
                                                     </tableView>
                                                 </subviews>
                                             </stackView>
@@ -269,6 +258,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="NBUTableView" destination="xkZ-hg-6Xu" id="2HP-O8-1iE"/>
+                        <outlet property="PBTableView" destination="aA5-FV-utw" id="FZS-uw-u34"/>
                         <segue destination="K31-yO-AFg" kind="popoverPresentation" identifier="popOver" popoverAnchorView="1qu-H3-lwh" id="EVB-1b-HTD">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
