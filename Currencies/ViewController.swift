@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    let PB_URL = "https://api.privatbank.ua/p24api/exchange_rates?json"
 
     @IBOutlet weak var PBTableView: UITableView!
     @IBOutlet weak var NBUTableView: UITableView!
@@ -88,6 +91,8 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         let button = popoverPresentationController.sourceView as! UIButton
         button.setImage(UIImage(imageLiteralResourceName: "icons8-calendar-96"), for: .normal)
         
+        userSelectedDate(attriburedText.string)
+        
         if popoverPresentationController.sourceView == view.viewWithTag(1) {
             PBDateLabel.attributedText = self.attriburedText
         }
@@ -121,4 +126,35 @@ private extension ViewController {
         PBDateLabel.attributedText = attributedString
         NBUDateLabel.attributedText = attributedString
     }
+    
+    func userSelectedDate(_ date: String) {
+        let params: [String: String] = ["date": date]
+        getExchangeRates(url: PB_URL, parameters: params)
+    }
+    
 }
+
+//MARK: Networking
+
+ private extension ViewController {
+    
+    func getExchangeRates(url: String, parameters: [String: String]) {
+        print(url)
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON { (response) in
+            
+            if response.result.isSuccess {
+                print("Success! Got the rate data")
+                let exchangeRate: JSON = JSON(response.result.value!)
+                print(exchangeRate)
+                //TODO: UPDATE UI
+            } else {
+                print("Error \(String(describing: response.result.error))")
+            }
+            
+        }
+        
+    }
+    
+}
+
+
