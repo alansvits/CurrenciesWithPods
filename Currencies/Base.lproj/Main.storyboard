@@ -104,24 +104,24 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="rsB-bp-FVv">
-                                                                            <rect key="frame" x="0.0" y="9" width="340.5" height="31.5"/>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="rsB-bp-FVv">
+                                                                            <rect key="frame" x="0.0" y="9" width="343" height="31.5"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0u-LD-bSk">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="49.5" height="31.5"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="85.5" height="31.5"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28.300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yy-qK-JAO">
-                                                                                    <rect key="frame" x="109.5" y="0.0" width="85.5" height="31.5"/>
+                                                                                    <rect key="frame" x="129" y="0.0" width="85.5" height="31.5"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28.300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8us-5q-v3J">
-                                                                                    <rect key="frame" x="255" y="0.0" width="85.5" height="31.5"/>
+                                                                                    <rect key="frame" x="257.5" y="0.0" width="85.5" height="31.5"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -129,6 +129,11 @@
                                                                             </subviews>
                                                                         </stackView>
                                                                     </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstItem="8yy-qK-JAO" firstAttribute="centerX" secondItem="ra0-hX-TiN" secondAttribute="centerX" id="08F-m1-I8Y"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="8us-5q-v3J" secondAttribute="trailing" id="LLa-k6-s7g"/>
+                                                                        <constraint firstItem="P0u-LD-bSk" firstAttribute="leading" secondItem="ra0-hX-TiN" secondAttribute="leading" id="aXh-Ae-BuB"/>
+                                                                    </constraints>
                                                                 </tableViewCellContentView>
                                                                 <connections>
                                                                     <outlet property="currencyLabel" destination="P0u-LD-bSk" id="wvt-kY-Or9"/>
