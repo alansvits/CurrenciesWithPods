@@ -13,14 +13,17 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
 
     @IBOutlet weak var PBTableView: UITableView!
     @IBOutlet weak var NBUTableView: UITableView!
+    @IBOutlet weak var PBDateLabel: UILabel!
+    @IBOutlet weak var NBUDateLabel: UILabel!
     
+    var attriburedText = NSAttributedString()
     
     @IBAction func showDatePicker(_ sender: UIButton) {
         
         sender.setImage(UIImage(imageLiteralResourceName: "icons8-calendar-96 (1)"), for: UIControl.State.normal)
 
         // get a reference to the view controller for the popover
-        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popoverId")
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popoverId") as! DatePickerViewController
         
         // set the presentation style
         popController.modalPresentationStyle = UIModalPresentationStyle.popover
@@ -32,14 +35,15 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         popController.popoverPresentationController?.sourceRect = sender.bounds
         
         // present the popover
-        self.present(popController, animated: true, completion: nil)
+        self.present(popController, animated: true) {
+            popController.datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
+        }
+//        self.present(popController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -50,7 +54,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         return false
     }
 
-    //MARK: - NBU tableview delegate methods
+    //MARK: - NBU tableview source delegate methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == NBUTableView {
@@ -81,7 +85,24 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
         let button = popoverPresentationController.sourceView as! UIButton
         button.setImage(UIImage(imageLiteralResourceName: "icons8-calendar-96"), for: .normal)
+        
+        PBDateLabel.attributedText = self.attriburedText
+
+        print(PBDateLabel.text!)
     }
     
 }
 
+private extension ViewController {
+    @objc func datePickerValueChanged(datePicker: UIDatePicker) {
+        
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "dd.MM.yyyy"
+        
+        let dateValue = dateformatter.string(from: datePicker.date)
+        let attributedString = NSAttributedString(string: dateValue,
+                                                  attributes: [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue])
+        self.attriburedText = attributedString
+        
+    }
+}

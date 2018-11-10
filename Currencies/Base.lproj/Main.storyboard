@@ -258,7 +258,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="NBUDateLabel" destination="B3C-Zi-y7A" id="lEw-iB-YfM"/>
                         <outlet property="NBUTableView" destination="xkZ-hg-6Xu" id="2HP-O8-1iE"/>
+                        <outlet property="PBDateLabel" destination="vfc-yV-xef" id="RiH-cT-jcI"/>
                         <outlet property="PBTableView" destination="aA5-FV-utw" id="FZS-uw-u34"/>
                     </connections>
                 </viewController>
@@ -266,10 +268,10 @@
             </objects>
             <point key="canvasLocation" x="1237.5999999999999" y="44.527736131934034"/>
         </scene>
-        <!--View Controller-->
+        <!--Date Picker View Controller-->
         <scene sceneID="D9Z-yK-Zam">
             <objects>
-                <viewController storyboardIdentifier="popoverId" id="K31-yO-AFg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="popoverId" id="K31-yO-AFg" customClass="DatePickerViewController" customModule="Currencies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hbv-W9-b6d">
                         <rect key="frame" x="0.0" y="0.0" width="330" height="216"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -287,10 +289,13 @@
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="330" height="216"/>
                     <size key="freeformSize" width="330" height="216"/>
+                    <connections>
+                        <outlet property="datePicker" destination="Yxb-40-vr3" id="Gnt-cU-xWh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ebk-so-06d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1973.5999999999999" y="44.07796101949026"/>
+            <point key="canvasLocation" x="1984" y="44"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UpO-9k-Hfz">
