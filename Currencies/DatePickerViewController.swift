@@ -14,6 +14,9 @@ class DatePickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        datePicker.maximumDate = Date()
+        
     }
 
 }
