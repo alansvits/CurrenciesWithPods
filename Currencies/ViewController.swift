@@ -86,9 +86,12 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         let button = popoverPresentationController.sourceView as! UIButton
         button.setImage(UIImage(imageLiteralResourceName: "icons8-calendar-96"), for: .normal)
         
-        PBDateLabel.attributedText = self.attriburedText
-
-        print(PBDateLabel.text!)
+        if popoverPresentationController.sourceView == view.viewWithTag(1) {
+            PBDateLabel.attributedText = self.attriburedText
+        }
+        if popoverPresentationController.sourceView == view.viewWithTag(2) {
+            NBUDateLabel.attributedText = self.attriburedText
+        }
     }
     
 }
