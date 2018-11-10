@@ -90,7 +90,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aWj-tB-Yot" userLabel="PB table stack">
                                                 <rect key="frame" x="0.0" y="79" width="343" height="150"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aA5-FV-utw" userLabel="PB">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aA5-FV-utw" userLabel="PB">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="150"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -101,7 +101,7 @@
                                                                 <rect key="frame" x="0.0" y="28" width="343" height="50"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pDu-Yk-lxI" id="ra0-hX-TiN">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="49.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="rsB-bp-FVv">
@@ -192,7 +192,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SuC-yb-shm" userLabel="NBU table stack">
                                                 <rect key="frame" x="0.0" y="40" width="343" height="267"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xkZ-hg-6Xu" userLabel="NBU">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xkZ-hg-6Xu" userLabel="NBU">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="267"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
@@ -200,7 +200,7 @@
                                                                 <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6SG-Gu-r8K" id="j2D-xR-HrV">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="equalSpacing" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="56U-4V-OZS">
