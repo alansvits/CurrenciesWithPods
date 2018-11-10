@@ -117,6 +117,15 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if tableView == NBUTableView {
+            let color = indexPath.row % 2 == 0 ? UIColor.white : UIColor(red: 238.0/255, green: 245.0/255, blue: 240.0/255, alpha: 1.0)
+            cell.backgroundColor = color
+        }
+
+    }
+    
     //MARK: - UIPopoverPresentationControllerDelegate methods
     
     func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
