@@ -15,25 +15,31 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     @IBOutlet weak var NBUTableView: UITableView!
     
     
-    @IBAction func showDatePicker(_ sender: Any) {
-
-        performSegue(withIdentifier: "popOver", sender: self)
+    @IBAction func showDatePicker(_ sender: UIButton) {
         
+        sender.setImage(UIImage(imageLiteralResourceName: "icons8-calendar-96 (1)"), for: UIControl.State.normal)
+
+        // get a reference to the view controller for the popover
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popoverId")
+        
+        // set the presentation style
+        popController.modalPresentationStyle = UIModalPresentationStyle.popover
+        
+        // set up the popover presentation controller
+        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = sender // button
+        popController.popoverPresentationController?.sourceRect = sender.bounds
+        
+        // present the popover
+        self.present(popController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "popOver" {
-            let destinationVC = segue.destination
-            if let popoverVC = destinationVC.popoverPresentationController {
-                popoverVC.delegate = self
-            }
-        }
+        
+
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -68,6 +74,13 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         } else {
             return UITableViewCell()
         }
+    }
+    
+    //MARK: - UIPopoverPresentationControllerDelegate methods
+    
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        let button = popoverPresentationController.sourceView as! UIButton
+        button.setImage(UIImage(imageLiteralResourceName: "icons8-calendar-96"), for: .normal)
     }
     
 }

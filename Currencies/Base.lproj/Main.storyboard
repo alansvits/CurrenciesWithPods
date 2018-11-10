@@ -37,7 +37,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qFg-Hr-jng">
                                                         <rect key="frame" x="212" y="0.0" width="131" height="32"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qu-H3-lwh">
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qu-H3-lwh">
                                                                 <rect key="frame" x="0.0" y="0.0" width="32.5" height="32"/>
                                                                 <state key="normal" image="icons8-calendar-96">
                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -157,13 +157,13 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FPI-Jq-GuN">
                                                         <rect key="frame" x="212.5" y="0.0" width="130.5" height="32"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOC-GL-IfB">
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOC-GL-IfB">
                                                                 <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
-                                                                <state key="normal" image="icons8-calendar-96 (1)">
+                                                                <state key="normal" image="icons8-calendar-96">
                                                                     <color key="titleColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="showDatePicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d3S-Gm-PUg"/>
+                                                                    <action selector="showDatePicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xEQ-gS-eYF"/>
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3C-Zi-y7A">
@@ -260,9 +260,6 @@
                     <connections>
                         <outlet property="NBUTableView" destination="xkZ-hg-6Xu" id="2HP-O8-1iE"/>
                         <outlet property="PBTableView" destination="aA5-FV-utw" id="FZS-uw-u34"/>
-                        <segue destination="K31-yO-AFg" kind="popoverPresentation" identifier="popOver" popoverAnchorView="1qu-H3-lwh" id="EVB-1b-HTD">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
-                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -272,7 +269,7 @@
         <!--View Controller-->
         <scene sceneID="D9Z-yK-Zam">
             <objects>
-                <viewController id="K31-yO-AFg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="popoverId" id="K31-yO-AFg" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hbv-W9-b6d">
                         <rect key="frame" x="0.0" y="0.0" width="330" height="216"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -321,6 +318,5 @@
     <resources>
         <image name="bar-diagram" width="33" height="33"/>
         <image name="icons8-calendar-96" width="32" height="32"/>
-        <image name="icons8-calendar-96 (1)" width="32" height="32"/>
     </resources>
 </document>
