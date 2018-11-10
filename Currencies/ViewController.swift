@@ -17,6 +17,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     @IBOutlet weak var NBUDateLabel: UILabel!
     
     var attriburedText = NSAttributedString()
+    var datePickerDate = Date()
     
     @IBAction func showDatePicker(_ sender: UIButton) {
         
@@ -36,6 +37,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         
         // present the popover
         self.present(popController, animated: true) {
+            popController.datePicker.date = self.datePickerDate
             popController.datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
         }
 //        self.present(popController, animated: true, completion: nil)
@@ -106,7 +108,7 @@ private extension ViewController {
         let attributedString = NSAttributedString(string: dateValue,
                                                   attributes: [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue])
         self.attriburedText = attributedString
-        
+        datePickerDate = datePicker.date
     }
     
     func setUpDateLabel() {
