@@ -70,7 +70,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         return false
     }
     
-    //MARK: - NBU tableview source delegate methods
+    //MARK: - NBU tableview data source methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == NBUTableView {
@@ -104,7 +104,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
             } else { return UITableViewCell() }
             
         } else if tableView == PBTableView {
-
+            
             let cell = PBTableView.dequeueReusableCell(withIdentifier: "PBCell") as! PBTableViewCell
             if let PBRates = PBexchangeRatesArray {
                 cell.currencyLabel.text = PBRates[indexPath.row].currency
@@ -117,13 +117,35 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         
     }
     
+    //MARK: - NBU tableview  delegate methods
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
         if tableView == NBUTableView {
             let color = indexPath.row % 2 == 0 ? UIColor.white : UIColor(red: 238.0/255, green: 245.0/255, blue: 240.0/255, alpha: 1.0)
             cell.backgroundColor = color
         }
-
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if tableView == PBTableView {
+            let seletedCell = PBexchangeRatesArray![indexPath.row]
+            var currencySign = seletedCell.currency
+            if currencySign == "PLZ" { currencySign = "PLN" }
+            if let index = NBexchangeRatesArray?.firstIndex(where: { $0.currency == currencySign }) {
+                NBUTableView.scrollToRow(at: IndexPath(item: index, section: 0), at: .top, animated: true)
+            }
+        }
+        if tableView == NBUTableView {
+            let seletedCell = NBexchangeRatesArray![indexPath.row]
+            var currencySign = seletedCell.currency
+            if currencySign == "PLN" { currencySign = "PLZ" }
+            if let index = PBexchangeRatesArray?.firstIndex(where: { $0.currency == currencySign }) {
+                PBTableView.scrollToRow(at: IndexPath(item: index, section: 0), at: .top, animated: true)
+                PBTableView.cellForRow(at: IndexPath(item: index, section: 0))?.isSelected = true
+            }
+        }
+        
     }
     
     //MARK: - UIPopoverPresentationControllerDelegate methods
