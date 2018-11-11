@@ -21,23 +21,23 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cMX-BD-DNH">
                                 <rect key="frame" x="16" y="84" width="343" height="563"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="wpa-ja-ARx" userLabel="PB stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="229"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wpa-ja-ARx" userLabel="PB stack">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="217"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="UyP-WY-gej" userLabel="PB row stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="ПриватБанк" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umT-hw-dJ5">
-                                                        <rect key="frame" x="0.0" y="0.0" width="117" height="32"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="117" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                         <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qFg-Hr-jng">
-                                                        <rect key="frame" x="212.5" y="0.0" width="130.5" height="32"/>
+                                                        <rect key="frame" x="212.5" y="0.0" width="130.5" height="28"/>
                                                         <subviews>
                                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qu-H3-lwh">
-                                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="32" height="28"/>
                                                                 <state key="normal" image="icons8-calendar-96">
                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
@@ -46,7 +46,7 @@
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfc-yV-xef">
-                                                                <rect key="frame" x="40" y="0.0" width="90.5" height="32"/>
+                                                                <rect key="frame" x="40" y="0.0" width="90.5" height="28"/>
                                                                 <attributedString key="attributedText">
                                                                     <fragment content="01.01.2015">
                                                                         <attributes>
@@ -71,7 +71,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ry5-16-izX" userLabel="Table header stack">
-                                                <rect key="frame" x="0.0" y="44" width="343" height="23"/>
+                                                <rect key="frame" x="0.0" y="36" width="343" height="23"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Валюта" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thq-aF-uH6">
                                                         <rect key="frame" x="0.0" y="0.0" width="66.5" height="23"/>
@@ -94,7 +94,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aWj-tB-Yot" userLabel="PB table stack">
-                                                <rect key="frame" x="0.0" y="79" width="343" height="150"/>
+                                                <rect key="frame" x="0.0" y="67" width="343" height="150"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aA5-FV-utw" userLabel="PB">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="150"/>
@@ -157,9 +157,10 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
+                                        <variation key="heightClass=compact" distribution="equalSpacing"/>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZLx-KV-jqY" userLabel="NBU stack">
-                                        <rect key="frame" x="0.0" y="249" width="343" height="314"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ZLx-KV-jqY" userLabel="NBU stack">
+                                        <rect key="frame" x="0.0" y="237" width="343" height="326"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="21j-vX-fht" userLabel="NBU row stack">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
@@ -208,10 +209,10 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SuC-yb-shm" userLabel="NBU table stack">
-                                                <rect key="frame" x="0.0" y="40" width="343" height="274"/>
+                                                <rect key="frame" x="0.0" y="44" width="343" height="282"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xkZ-hg-6Xu" userLabel="NBU">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="274"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="282"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBUCell" id="6SG-Gu-r8K" customClass="NBUTableViewCell" customModule="Currencies" customModuleProvider="target">
@@ -277,7 +278,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="ZLx-KV-jqY" secondAttribute="bottom" id="4h2-G4-wdb"/>
-                                    <constraint firstItem="ZLx-KV-jqY" firstAttribute="top" secondItem="wpa-ja-ARx" secondAttribute="bottom" constant="26" id="zbg-ZV-xFM"/>
                                 </constraints>
                                 <variation key="heightClass=compact" axis="horizontal" distribution="fillEqually"/>
                             </stackView>
@@ -285,7 +285,6 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="cMX-BD-DNH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="VzS-fI-dOE"/>
-                            <constraint firstItem="cMX-BD-DNH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Wxd-3d-jvF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cMX-BD-DNH" secondAttribute="bottom" constant="20" id="cop-hx-gSc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cMX-BD-DNH" secondAttribute="trailing" constant="16" id="k0e-MY-2wv"/>
                             <constraint firstItem="cMX-BD-DNH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="yaf-3Q-LO9"/>
