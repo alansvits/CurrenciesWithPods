@@ -210,20 +210,19 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SuC-yb-shm" userLabel="NBU table stack">
                                                 <rect key="frame" x="0.0" y="44" width="343" height="282"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xkZ-hg-6Xu" userLabel="NBU">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="48" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xkZ-hg-6Xu" userLabel="NBU">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="282"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBUCell" id="6SG-Gu-r8K" customClass="NBUTableViewCell" customModule="Currencies" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                                                <rect key="frame" x="0.0" y="28" width="343" height="48"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6SG-Gu-r8K" id="j2D-xR-HrV">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="equalSpacing" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="56U-4V-OZS">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="197" height="43"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="56U-4V-OZS">
+                                                                            <rect key="frame" x="0.0" y="2.5" width="343" height="43"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Доллар США" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsV-Ql-x6D">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="110" height="43"/>
@@ -232,7 +231,7 @@
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="wJH-7T-CQT">
-                                                                                    <rect key="frame" x="111" y="0.0" width="86" height="43"/>
+                                                                                    <rect key="frame" x="257" y="0.0" width="86" height="43"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26.31 UAH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wH5-hU-IMq">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="86" height="21.5"/>
@@ -256,6 +255,8 @@
                                                                     </subviews>
                                                                     <constraints>
                                                                         <constraint firstAttribute="trailing" secondItem="wH5-hU-IMq" secondAttribute="trailing" id="Dew-rg-jpY"/>
+                                                                        <constraint firstItem="56U-4V-OZS" firstAttribute="centerY" secondItem="j2D-xR-HrV" secondAttribute="centerY" id="cM0-lE-BBc"/>
+                                                                        <constraint firstItem="56U-4V-OZS" firstAttribute="centerX" secondItem="j2D-xR-HrV" secondAttribute="centerX" id="hCu-SO-Hn3"/>
                                                                     </constraints>
                                                                 </tableViewCellContentView>
                                                                 <connections>
