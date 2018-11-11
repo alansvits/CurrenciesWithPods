@@ -346,7 +346,7 @@ private extension ViewController {
         let tempResult = json.arrayValue
         var ratesArray = [NBRateData]()
         for item in tempResult {
-            
+            if item["cc"].stringValue == "XDR" { continue }
             let tempRateData = NBRateData(currency: item["cc"].stringValue,
                                           currencyName: item["txt"].stringValue,
                                           saleRate: item["rate"].doubleValue)
