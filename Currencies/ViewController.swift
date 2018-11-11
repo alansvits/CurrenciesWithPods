@@ -127,22 +127,31 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         
         if tableView == PBTableView {
             let seletedCell = PBexchangeRatesArray![indexPath.row]
             var currencySign = seletedCell.currency
             if currencySign == "PLZ" { currencySign = "PLN" }
             if let index = NBexchangeRatesArray?.firstIndex(where: { $0.currency == currencySign }) {
-                NBUTableView.scrollToRow(at: IndexPath(item: index, section: 0), at: .top, animated: true)
+                NBUTableView.selectRow(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .top)
             }
         }
         if tableView == NBUTableView {
+            
+            let selectedRows = PBTableView.indexPathsForSelectedRows
+            if let rowsArray = selectedRows {
+                print("SELECTED ARRAY")
+                for item in rowsArray {
+                    PBTableView.deselectRow(at: item, animated: true)
+                }
+            }
+            
             let seletedCell = NBexchangeRatesArray![indexPath.row]
             var currencySign = seletedCell.currency
             if currencySign == "PLN" { currencySign = "PLZ" }
             if let index = PBexchangeRatesArray?.firstIndex(where: { $0.currency == currencySign }) {
-                PBTableView.scrollToRow(at: IndexPath(item: index, section: 0), at: .top, animated: true)
-                PBTableView.cellForRow(at: IndexPath(item: index, section: 0))?.isSelected = true
+                PBTableView.selectRow(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .top)
             }
         }
         
