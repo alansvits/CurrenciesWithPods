@@ -24,6 +24,8 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     var datePickerDate = Date()
     var PBexchangeRatesArray: [RateData]?
     var NBexchangeRatesArray: [NBRateData]?
+    var PBTableConstraint: NSLayoutConstraint?
+
     
     @IBAction func showDatePicker(_ sender: UIButton) {
         
@@ -59,6 +61,20 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         let formattdStringForRequest = formattedString[4..<formattedString.count] + formattedString[2..<4] + formattedString[0..<2]
         userSelectedDateFor(NB_URL, with: formattdStringForRequest)
         
+        PBTableConstraint = NSLayoutConstraint(item: PBTableView,
+                                               attribute: .height,
+                                               relatedBy: .equal,
+                                               toItem: nil,
+                                               attribute: .notAnAttribute,
+                                               multiplier: 0,
+                                               constant: 150)
+        PBTableView.addConstraint(PBTableConstraint!)
+        fixPBTableLandscapeMode()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        fixPBTableLandscapeMode()
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -193,6 +209,16 @@ private extension ViewController {
     func userSelectedDateFor(_ url: String, with date: String) {
         let params: [String: String] = ["date": date]
         getExchangeRates(url: url, parameters: params)
+    }
+    
+    //MARK: - HELPER methods
+    
+    private func fixPBTableLandscapeMode() {
+        if UIDevice.current.orientation.isLandscape {
+            PBTableConstraint?.isActive = false
+        } else {
+            PBTableConstraint?.isActive = true
+        }
     }
     
 }
