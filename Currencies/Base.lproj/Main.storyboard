@@ -24,7 +24,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="wpa-ja-ARx" userLabel="PB stack">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="229"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="95" translatesAutoresizingMaskIntoConstraints="NO" id="UyP-WY-gej" userLabel="PB row stack">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="UyP-WY-gej" userLabel="PB row stack">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="ПриватБанк" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umT-hw-dJ5">
@@ -34,10 +34,10 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qFg-Hr-jng">
-                                                        <rect key="frame" x="212" y="0.0" width="131" height="32"/>
+                                                        <rect key="frame" x="212.5" y="0.0" width="130.5" height="32"/>
                                                         <subviews>
                                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qu-H3-lwh">
-                                                                <rect key="frame" x="0.0" y="0.0" width="32.5" height="32"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                                                                 <state key="normal" image="icons8-calendar-96">
                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
@@ -46,7 +46,7 @@
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfc-yV-xef">
-                                                                <rect key="frame" x="40.5" y="0.0" width="90.5" height="32"/>
+                                                                <rect key="frame" x="40" y="0.0" width="90.5" height="32"/>
                                                                 <attributedString key="attributedText">
                                                                     <fragment content="01.01.2015">
                                                                         <attributes>
@@ -60,8 +60,15 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="vfc-yV-xef" firstAttribute="leading" secondItem="1qu-H3-lwh" secondAttribute="trailing" constant="8" id="eLb-dY-2Hs"/>
+                                                        </constraints>
                                                     </stackView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="umT-hw-dJ5" firstAttribute="leading" secondItem="UyP-WY-gej" secondAttribute="leading" id="O83-03-7UL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="qFg-Hr-jng" secondAttribute="trailing" id="lhE-dn-q7B"/>
+                                                </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ry5-16-izX" userLabel="Table header stack">
                                                 <rect key="frame" x="0.0" y="44" width="343" height="23"/>
@@ -154,7 +161,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZLx-KV-jqY" userLabel="NBU stack">
                                         <rect key="frame" x="0.0" y="249" width="343" height="314"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="172" translatesAutoresizingMaskIntoConstraints="NO" id="21j-vX-fht" userLabel="NBU row stack">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="21j-vX-fht" userLabel="NBU row stack">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="НБУ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzi-xJ-WMx">
@@ -190,8 +197,15 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="B3C-Zi-y7A" firstAttribute="leading" secondItem="LOC-GL-IfB" secondAttribute="trailing" constant="8" id="Z5u-rR-RIQ"/>
+                                                        </constraints>
                                                     </stackView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="FPI-Jq-GuN" secondAttribute="trailing" id="LOr-x0-boR"/>
+                                                    <constraint firstItem="hzi-xJ-WMx" firstAttribute="leading" secondItem="21j-vX-fht" secondAttribute="leading" id="Rq4-ZZ-Bvk"/>
+                                                </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SuC-yb-shm" userLabel="NBU table stack">
                                                 <rect key="frame" x="0.0" y="40" width="343" height="274"/>
