@@ -113,8 +113,8 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
             let cell = NBUTableView.dequeueReusableCell(withIdentifier: "NBUCell") as! NBUTableViewCell
             if let NBRates = NBexchangeRatesArray {
                 cell.currencyName.text = NBRates[indexPath.row].currencyName
-                cell.priceLabel.text = String(format: "%.2f", NBRates[indexPath.row].saleRate)  + " UAH"
-                cell.unitsLabel.text = "1 " + NBRates[indexPath.row].currency
+                cell.priceLabel.text = String(format: "%.2f", Double(getMultiplierFor(NBRates[indexPath.row].currency)) * NBRates[indexPath.row].saleRate)  + " UAH"
+                cell.unitsLabel.text = "\(String(getMultiplierFor(NBRates[indexPath.row].currency))) " + NBRates[indexPath.row].currency
                 return cell
             } else { return UITableViewCell() }
             
@@ -218,6 +218,50 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         return resultArr
     }
     
+    /*
+     1000 VND
+     10000 IDR
+     100 AMD
+     1000 LBP
+     100 IQD
+     100 TWD
+     100 PKR
+     100 KZT
+     1000 IRR
+     10 INR
+     100 THB
+     100 UZS
+     10 JPY
+     100 BDT
+     1000 HUF
+     100 DZD
+     100 KGS
+ */
+    
+    private func getMultiplierFor(_ currency: String) -> Int {
+        switch currency {
+        case "RUB": return 10
+        case "VND": return 1000
+        case "IDR": return 10000
+        case "AMD": return 100
+        case "LBP": return 1000
+        case "IQD": return 100
+        case "TWD": return 100
+        case "PKR": return 100
+        case "KZT": return 100
+        case "IRR": return 1000
+        case "INR": return 10
+        case "THB": return 100
+        case "UZS": return 100
+        case "JPY": return 10
+        case "BDT": return 100
+        case "HUF": return 1000
+        case "DZD": return 100
+        case "KGS": return 100
+        default: return 1
+        }
+    }
+    
 }
 
 private extension ViewController {
@@ -298,7 +342,7 @@ private extension ViewController {
     }
     
     func NBRateDataUpdateCurrency(json: JSON) {
-        
+        print(json)
         let tempResult = json.arrayValue
         var ratesArray = [NBRateData]()
         for item in tempResult {
