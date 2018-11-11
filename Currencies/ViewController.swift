@@ -113,8 +113,8 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
             let cell = NBUTableView.dequeueReusableCell(withIdentifier: "NBUCell") as! NBUTableViewCell
             if let NBRates = NBexchangeRatesArray {
                 cell.currencyName.text = NBRates[indexPath.row].currencyName
-                cell.priceLabel.text = String(format: "%.2f", Double(getMultiplierFor(NBRates[indexPath.row].currency)) * NBRates[indexPath.row].saleRate)  + " UAH"
-                cell.unitsLabel.text = "\(String(getMultiplierFor(NBRates[indexPath.row].currency))) " + NBRates[indexPath.row].currency
+                cell.priceLabel.text = String(format: "%.2f", Double(getMultiplierFor(NBRates[indexPath.row].currency)) * NBRates[indexPath.row].saleRate)  + "UAH"
+                cell.unitsLabel.text = "\(String(getMultiplierFor(NBRates[indexPath.row].currency)))" + NBRates[indexPath.row].currency
                 return cell
             } else { return UITableViewCell() }
             
