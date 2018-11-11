@@ -46,7 +46,6 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
             popController.datePicker.date = self.datePickerDate
             popController.datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
         }
-        //        self.present(popController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -127,8 +126,6 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        
         if tableView == PBTableView {
             let seletedCell = PBexchangeRatesArray![indexPath.row]
             var currencySign = seletedCell.currency
@@ -138,15 +135,6 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
             }
         }
         if tableView == NBUTableView {
-            
-            let selectedRows = PBTableView.indexPathsForSelectedRows
-            if let rowsArray = selectedRows {
-                print("SELECTED ARRAY")
-                for item in rowsArray {
-                    PBTableView.deselectRow(at: item, animated: true)
-                }
-            }
-            
             let seletedCell = NBexchangeRatesArray![indexPath.row]
             var currencySign = seletedCell.currency
             if currencySign == "PLN" { currencySign = "PLZ" }
@@ -154,7 +142,6 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
                 PBTableView.selectRow(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .top)
             }
         }
-        
     }
     
     //MARK: - UIPopoverPresentationControllerDelegate methods
