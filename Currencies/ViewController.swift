@@ -179,6 +179,45 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         }
     }
     
+    //MARK: - HELPER methods
+    
+    private func fixPBTableLandscapeMode() {
+        if UIDevice.current.orientation.isLandscape {
+            PBTableConstraint?.isActive = false
+        } else {
+            PBTableConstraint?.isActive = true
+        }
+    }
+    
+    private func sortPBTableSourceArray(_ array: [RateData]) -> [RateData] {
+        var resultArr = array
+        var eur = [RateData]()
+        var usd = [RateData]()
+        var rub = [RateData]()
+
+            for item in array {
+                if item.currency == "EUR" {
+                    resultArr.removeAll(where: {$0.currency == "EUR"})
+                } else if item.currency == "USD" {
+                    resultArr.removeAll(where: {$0.currency == "USD"})
+                } else if item.currency == "RUB" {
+                    resultArr.removeAll(where: {$0.currency == "RUB"})
+                }
+            }
+            for item in array {
+                if item.currency == "EUR" {
+                    eur.append(item)
+                } else if item.currency == "USD" {
+                    usd.append(item)
+                } else if item.currency == "RUB" {
+                    rub.append(item)
+                }
+            }
+        
+        resultArr = eur + usd + rub + resultArr
+        return resultArr
+    }
+    
 }
 
 private extension ViewController {
@@ -211,16 +250,6 @@ private extension ViewController {
         getExchangeRates(url: url, parameters: params)
     }
     
-    //MARK: - HELPER methods
-    
-    private func fixPBTableLandscapeMode() {
-        if UIDevice.current.orientation.isLandscape {
-            PBTableConstraint?.isActive = false
-        } else {
-            PBTableConstraint?.isActive = true
-        }
-    }
-    
 }
 
 //MARK: Networking
@@ -228,7 +257,7 @@ private extension ViewController {
 private extension ViewController {
     
     func getExchangeRates(url: String, parameters: [String: String]) {
-        print(url)
+
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON { (response) in
             
             if response.result.isSuccess {
@@ -262,10 +291,9 @@ private extension ViewController {
                                             saleRatePB: item["saleRate"].doubleValue,
                                             purchaseRatePB: item["purchaseRate"].doubleValue)
                 ratesArray.append(tempRateData)
-                print(tempRateData)
             }
         }
-        PBexchangeRatesArray = ratesArray
+        PBexchangeRatesArray = sortPBTableSourceArray(ratesArray)
         PBTableView.reloadData()
     }
     
@@ -279,7 +307,6 @@ private extension ViewController {
                                           currencyName: item["txt"].stringValue,
                                           saleRate: item["rate"].doubleValue)
             ratesArray.append(tempRateData)
-            print(tempRateData)
         }
         NBexchangeRatesArray = ratesArray
         NBUTableView.reloadData()
