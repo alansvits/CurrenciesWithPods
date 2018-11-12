@@ -368,6 +368,8 @@ private extension ViewController {
         }
         PBexchangeRatesArray = sortPBTableSourceArray(ratesArray)
         PBTableView.reloadData()
+        PBTableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+
         print(json)
 
     }
