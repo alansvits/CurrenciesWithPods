@@ -48,6 +48,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
             popController.datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: -4, to: Date())
             popController.datePicker.date = self.datePickerDate
             popController.datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
+            popController.datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: .touchDown)
         }
     }
     
@@ -314,7 +315,7 @@ private extension ViewController {
 }
 
 //MARK: Networking
-
+//"The Internet connection appears to be offline."
 private extension ViewController {
     
     func getExchangeRates(url: String, parameters: [String: String]? = nil) {
@@ -331,6 +332,14 @@ private extension ViewController {
                 if url == self.NB_URL { self.NBRateDataUpdateCurrency(json: exchangeRate) }
                 
             } else {
+                // create the alert
+                let alert = UIAlertController(title: "Error", message: "The Internet connection appears to be offline.", preferredStyle: UIAlertController.Style.alert)
+                
+                // add an action (button)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                
+                // show the alert
+                self.present(alert, animated: true, completion: nil)
                 print("Error \(String(describing: response.result.error))")
             }
             
@@ -359,6 +368,8 @@ private extension ViewController {
         }
         PBexchangeRatesArray = sortPBTableSourceArray(ratesArray)
         PBTableView.reloadData()
+        print(json)
+
     }
     
     func PBTodayRateDataUpdateCurrency(json: JSON) {
@@ -379,6 +390,8 @@ private extension ViewController {
         }
         PBexchangeRatesArray = sortPBTableSourceArray(ratesArray)
         PBTableView.reloadData()
+        print(json)
+
     }
     
     func NBRateDataUpdateCurrency(json: JSON) {
@@ -393,6 +406,8 @@ private extension ViewController {
         }
         NBexchangeRatesArray = ratesArray
         NBUTableView.reloadData()
+        print(json)
+
     }
     
 }
