@@ -13,6 +13,7 @@ import SwiftyJSON
 class ViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     let PB_URL = "https://api.privatbank.ua/p24api/exchange_rates?json"
+    let PB_TODAY_RATES_URL = "https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11"
     let NB_URL = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json"
     
     @IBOutlet weak var PBTableView: UITableView!
@@ -25,7 +26,6 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     var PBexchangeRatesArray: [RateData]?
     var NBexchangeRatesArray: [NBRateData]?
     var PBTableConstraint: NSLayoutConstraint?
-
     
     @IBAction func showDatePicker(_ sender: UIButton) {
         
@@ -45,17 +45,36 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         
         // present the popover
         self.present(popController, animated: true) {
+            popController.datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: -4, to: Date())
             popController.datePicker.date = self.datePickerDate
             popController.datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
         }
+    }
+    
+    @IBAction func getTodayRates(_ sender: Any) {
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "dd.MM.yyyy"
+        
+        let dateValue = dateformatter.string(from: Date())
+        userSelectedDateFor(PB_TODAY_RATES_URL, with: nil)
+        let stringDate = dateValue
+        let formattedString = stringDate.replacingOccurrences(of: ".", with: "")
+        let formattdStringForRequest = formattedString[4..<formattedString.count] + formattedString[2..<4] + formattedString[0..<2]
+        userSelectedDateFor(NB_URL, with: formattdStringForRequest)
+        let attributedString = NSAttributedString(string: dateValue,
+                                                  attributes: [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue])
+        attriburedText = attributedString
+        PBDateLabel.attributedText = attriburedText
+        NBUDateLabel.attributedText = attriburedText
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpDateLabel()
         
-        userSelectedDateFor(PB_URL, with: attriburedText.string)
-        
+        userSelectedDateFor(PB_TODAY_RATES_URL, with: nil)
+
         let stringDate = attriburedText.string
         let formattedString = stringDate.replacingOccurrences(of: ".", with: "")
         let formattdStringForRequest = formattedString[4..<formattedString.count] + formattedString[2..<4] + formattedString[0..<2]
@@ -126,7 +145,11 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
                 cell.purchaseRateLabel.text = String(format: "%.3f", PBRates[indexPath.row].purchaseRatePB)
                 cell.saleRateLabel.text = String(format: "%.3f", PBRates[indexPath.row].saleRatePB)
                 return cell
-            } else { return UITableViewCell() }
+            } else {
+                print("No data")
+                return UITableViewCell()
+                
+            }
             
         } else { return UITableViewCell() }
         
@@ -146,6 +169,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
             let seletedCell = PBexchangeRatesArray![indexPath.row]
             var currencySign = seletedCell.currency
             if currencySign == "PLZ" { currencySign = "PLN" }
+//            if currencySign == "RUR" { currencySign = "RUR" }
             if let index = NBexchangeRatesArray?.firstIndex(where: { $0.currency == currencySign }) {
                 NBUTableView.selectRow(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .top)
             }
@@ -168,7 +192,16 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         
         if popoverPresentationController.sourceView == view.viewWithTag(1) {
             PBDateLabel.attributedText = self.attriburedText
-            userSelectedDateFor(PB_URL, with: attriburedText.string)
+            
+            let dateformatter = DateFormatter()
+            dateformatter.dateFormat = "dd.MM.yyyy"
+            
+            let dateValue = dateformatter.string(from: Date())
+            if attriburedText.string == dateValue {
+                userSelectedDateFor(PB_TODAY_RATES_URL, with: nil)
+            } else {
+                userSelectedDateFor(PB_URL, with: attriburedText.string)
+            }
         }
         if popoverPresentationController.sourceView == view.viewWithTag(2) {
             let stringDate = attriburedText.string
@@ -194,49 +227,29 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         var eur = [RateData]()
         var usd = [RateData]()
         var rub = [RateData]()
-
-            for item in array {
-                if item.currency == "EUR" {
-                    resultArr.removeAll(where: {$0.currency == "EUR"})
-                } else if item.currency == "USD" {
-                    resultArr.removeAll(where: {$0.currency == "USD"})
-                } else if item.currency == "RUB" {
-                    resultArr.removeAll(where: {$0.currency == "RUB"})
-                }
+        
+        for item in array {
+            if item.currency == "EUR" {
+                resultArr.removeAll(where: {$0.currency == "EUR"})
+            } else if item.currency == "USD" {
+                resultArr.removeAll(where: {$0.currency == "USD"})
+            } else if item.currency == "RUB" {
+                resultArr.removeAll(where: {$0.currency == "RUB"})
             }
-            for item in array {
-                if item.currency == "EUR" {
-                    eur.append(item)
-                } else if item.currency == "USD" {
-                    usd.append(item)
-                } else if item.currency == "RUB" {
-                    rub.append(item)
-                }
+        }
+        for item in array {
+            if item.currency == "EUR" {
+                eur.append(item)
+            } else if item.currency == "USD" {
+                usd.append(item)
+            } else if item.currency == "RUB" {
+                rub.append(item)
             }
+        }
         
         resultArr = eur + usd + rub + resultArr
         return resultArr
     }
-    
-    /*
-     1000 VND
-     10000 IDR
-     100 AMD
-     1000 LBP
-     100 IQD
-     100 TWD
-     100 PKR
-     100 KZT
-     1000 IRR
-     10 INR
-     100 THB
-     100 UZS
-     10 JPY
-     100 BDT
-     1000 HUF
-     100 DZD
-     100 KGS
- */
     
     private func getMultiplierFor(_ currency: String) -> Int {
         switch currency {
@@ -289,9 +302,13 @@ private extension ViewController {
         NBUDateLabel.attributedText = attributedString
     }
     
-    func userSelectedDateFor(_ url: String, with date: String) {
-        let params: [String: String] = ["date": date]
-        getExchangeRates(url: url, parameters: params)
+    func userSelectedDateFor(_ url: String, with date: String? = nil) {
+        if let date = date {
+            let params: [String: String] = ["date": date]
+            getExchangeRates(url: url, parameters: params)
+        } else {
+            getExchangeRates(url: url)
+        }
     }
     
 }
@@ -300,14 +317,16 @@ private extension ViewController {
 
 private extension ViewController {
     
-    func getExchangeRates(url: String, parameters: [String: String]) {
-
+    func getExchangeRates(url: String, parameters: [String: String]? = nil) {
+        
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON { (response) in
             
             if response.result.isSuccess {
                 print("Success! Got the rate data")
+                print(response.result)
                 let exchangeRate = JSON(response.result.value!)
                 
+                if url == self.PB_TODAY_RATES_URL { self.PBTodayRateDataUpdateCurrency(json: exchangeRate) }
                 if url == self.PB_URL { self.PBRateDataUpdateCurrency(json: exchangeRate) }
                 if url == self.NB_URL { self.NBRateDataUpdateCurrency(json: exchangeRate) }
                 
@@ -321,12 +340,13 @@ private extension ViewController {
     
 }
 
+
 //MARK: JSON parsing
 
 private extension ViewController {
     
     func PBRateDataUpdateCurrency(json: JSON) {
-        
+        print(json)
         let tempResult = json["exchangeRate"].arrayValue
         var ratesArray = [RateData]()
         for item in tempResult {
@@ -341,8 +361,27 @@ private extension ViewController {
         PBTableView.reloadData()
     }
     
+    func PBTodayRateDataUpdateCurrency(json: JSON) {
+        var ratesArray = [RateData]()
+        for item in json.arrayValue {
+            if item["ccy"].stringValue == "BTC" { continue }
+            if item["ccy"].stringValue == "RUR" {
+                let tempRateData = RateData(currency: "RUB",
+                                            saleRatePB: item["sale"].doubleValue,
+                                            purchaseRatePB: item["buy"].doubleValue)
+                ratesArray.append(tempRateData)
+                continue
+            }
+            let tempRateData = RateData(currency: item["ccy"].stringValue,
+                                        saleRatePB: item["sale"].doubleValue,
+                                        purchaseRatePB: item["buy"].doubleValue)
+            ratesArray.append(tempRateData)
+        }
+        PBexchangeRatesArray = sortPBTableSourceArray(ratesArray)
+        PBTableView.reloadData()
+    }
+    
     func NBRateDataUpdateCurrency(json: JSON) {
-        print(json)
         let tempResult = json.arrayValue
         var ratesArray = [NBRateData]()
         for item in tempResult {
