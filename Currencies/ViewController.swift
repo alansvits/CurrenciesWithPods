@@ -73,7 +73,6 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpDateLabel()
-        
         userSelectedDateFor(PB_TODAY_RATES_URL, with: nil)
 
         let stringDate = attriburedText.string
@@ -147,9 +146,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
                 cell.saleRateLabel.text = String(format: "%.3f", PBRates[indexPath.row].saleRatePB)
                 return cell
             } else {
-                print("No data")
                 return UITableViewCell()
-                
             }
             
         } else { return UITableViewCell() }
@@ -323,8 +320,6 @@ private extension ViewController {
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON { (response) in
             
             if response.result.isSuccess {
-                print("Success! Got the rate data")
-                print(response.result)
                 let exchangeRate = JSON(response.result.value!)
                 
                 if url == self.PB_TODAY_RATES_URL { self.PBTodayRateDataUpdateCurrency(json: exchangeRate) }
@@ -340,7 +335,6 @@ private extension ViewController {
                 
                 // show the alert
                 self.present(alert, animated: true, completion: nil)
-                print("Error \(String(describing: response.result.error))")
             }
             
         }
@@ -355,7 +349,6 @@ private extension ViewController {
 private extension ViewController {
     
     func PBRateDataUpdateCurrency(json: JSON) {
-        print(json)
         let tempResult = json["exchangeRate"].arrayValue
         var ratesArray = [RateData]()
         for item in tempResult {
@@ -369,9 +362,6 @@ private extension ViewController {
         PBexchangeRatesArray = sortPBTableSourceArray(ratesArray)
         PBTableView.reloadData()
         PBTableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-
-        print(json)
-
     }
     
     func PBTodayRateDataUpdateCurrency(json: JSON) {
@@ -392,8 +382,6 @@ private extension ViewController {
         }
         PBexchangeRatesArray = sortPBTableSourceArray(ratesArray)
         PBTableView.reloadData()
-        print(json)
-
     }
     
     func NBRateDataUpdateCurrency(json: JSON) {
@@ -408,8 +396,6 @@ private extension ViewController {
         }
         NBexchangeRatesArray = ratesArray
         NBUTableView.reloadData()
-        print(json)
-
     }
     
 }
