@@ -61,6 +61,33 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		64015DA821995F2900EF8F32 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				64031E2821970077008BCF1C /* RateData.swift */,
+				64031E2A21971524008BCF1C /* NBRateData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		64015DA921995F7000EF8F32 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				64031E222196CC09008BCF1C /* DatePickerViewController.swift */,
+				64031E1E2196A911008BCF1C /* PBTableViewCell.swift */,
+				64031E202196A923008BCF1C /* NBUTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		64015DAA21995F8100EF8F32 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				64031E2C21971C5C008BCF1C /* String+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		64ED4B1C2194AA7B00686841 = {
 			isa = PBXGroup;
 			children = (
@@ -84,16 +111,13 @@
 			children = (
 				64ED4B282194AA7C00686841 /* AppDelegate.swift */,
 				64ED4B2A2194AA7C00686841 /* ViewController.swift */,
-				64031E2821970077008BCF1C /* RateData.swift */,
-				64031E2A21971524008BCF1C /* NBRateData.swift */,
+				64015DA821995F2900EF8F32 /* Model */,
+				64015DA921995F7000EF8F32 /* View */,
 				64ED4B2C2194AA7C00686841 /* Main.storyboard */,
 				64ED4B2F2194AA7E00686841 /* Assets.xcassets */,
 				64ED4B312194AA7E00686841 /* LaunchScreen.storyboard */,
 				64ED4B342194AA7E00686841 /* Info.plist */,
-				64031E222196CC09008BCF1C /* DatePickerViewController.swift */,
-				64031E1E2196A911008BCF1C /* PBTableViewCell.swift */,
-				64031E202196A923008BCF1C /* NBUTableViewCell.swift */,
-				64031E2C21971C5C008BCF1C /* String+Extensions.swift */,
+				64015DAA21995F8100EF8F32 /* Extensions */,
 			);
 			path = Currencies;
 			sourceTree = "<group>";
